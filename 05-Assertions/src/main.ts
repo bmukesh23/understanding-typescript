@@ -1,86 +1,30 @@
-// Array
-let sarr = ['john', 'dave', 'mukesh']
+type One = string
+type Two = string | number;
+type Three = 'hello'
 
-let snarr = ['Strat', 'Les Paul', 5676]
-
-let mixedData = ['EVH', 1984, true]
-
-sarr[0] = 'Daniel';
-sarr.push('Tyler')
-
-snarr[0] = 1984
-snarr.unshift('You');
+// convert to more or less specific 
+let a: One = 'hello'
+let b = a as Two //less specific
+let c = a as Three //more specific
 
 
-// array data defining
-let test = []
-let bands: number[] = []
-bands.push(45)
+// angle brackets
+let d = <One>'world'
+let e = <Two>'world'
 
-// tuples
-let myTuple: [string, number, boolean] = ['Dave', 45, false]
-
-let mixed = ['John', 198, true]
-
-// mixed = myTuple; mixed agree mytuple because mixed is a union array.
-// myTuple = mixed; mytuple is a fixed defined array and it wont accept any other type of arrays.
-
-myTuple[1] = 43;
-
-
-// Objects
-
-let myObj: object
-myObj = []
-// let myObj: object = []
-console.log(typeof myObj)
-
-myObj = bands
-myObj = {}
-
-// object infered the object 'exampleObj' by user inputs.
-const exampleObj = {
-    prop1: 'Dave',
-    prop2: 'true',
+// examples
+const addConcat = (a: number, b: number, c: 'add' | 'concat') => {
+    if(c === 'add') return a + b;
+    return '' + a + b;
 }
 
-exampleObj.prop1 = 'you'
+let myVal: string = addConcat(2, 2, 'concat') as string;
 
-// It takes fixed defined data for object.
-interface Guitarist {
-    name?: string,
-    active: boolean,
-    albums: (string | number)[]
-}
 
-let evh: Guitarist = {
-    name: 'Eddie',
-    active: false,
-    albums: [4545, 'john'],
-}
+// 10 as string
+(10 as unknown) as string;  // Double casting
 
-let jp: Guitarist = {
-    name: 'Dave',
-    active: true,
-    albums: [634, 'you', 8759],
-}
 
-const greetGuitarist = (guitarist: Guitarist) => {
-    if(guitarist.name){
-        return `Hello ${guitarist.name.toUpperCase()}!`
-    }
-
-    return 'Hello!'
-}
-console.log(greetGuitarist(jp))
-
-// Enums
-enum Grade {
-    U = 1,
-    A,
-    B,
-    C,
-    D,
-}
-console.log(Grade.A)
-
+// DOM
+const img = document.getElementById('img') as HTMLImageElement
+img.src
